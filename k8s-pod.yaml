@@ -20,7 +20,7 @@ spec:
           emptyDir: {}
       containers:
       - name: webapp
-        image: demoacrpractice123.azurecr.io/samplewebapp:${Build.BuildId}
+        image: demoacrpractice123.azurecr.io/samplewebapp
         imagePullPolicy: Always
         volumeMounts:
           - name: logs-storage
