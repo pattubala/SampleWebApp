@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jpetstore
+spec:
+  replicas: 1
+  selector:  
+    matchLabels:
+      app: jpetstore
+  template:
+    metadata:
+      labels:
+        app: jpetstore
+    spec:
+      imagePullSecrets:
+      - name: imagepull
+
+      volumes:
+        - name: logs-storage
+          emptyDir: {}
+      containers:
+      - name: webapp
+        image: demoacrpractice123.azurecr.io/samplewebapp:80
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: logs-storage
+            mountPath: /var/log/nginx
+        ports:
+        - containerPort: 80
+
+      - name: busybox
+        image: busybox:latest
+        command: ["sleep", "3600"]
+        volumeMounts:
+          - name: logs-storage
+            mountPath: /data
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jpetstore
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: jpetstore
