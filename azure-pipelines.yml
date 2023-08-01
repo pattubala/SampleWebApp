@@ -12,10 +12,10 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'install -g @angular/cli@16'
+#- task: Npm@1
+#  inputs:
+#    command: 'custom'
+#    customCommand: 'install -g @angular/cli@16'
 
 - task: CmdLine@2
   inputs:
