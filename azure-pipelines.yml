@@ -15,4 +15,8 @@ steps:
 - task: Npm@1
   inputs:
     command: 'custom'
-    customCommand: 'build'
+    customCommand: 'install -g @angular/cli@16'
+
+- task: CmdLine@2
+  inputs:
+    script: 'ng build'
