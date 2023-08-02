@@ -30,8 +30,7 @@ spec:
 
       - name: busybox
         image: busybox:latest
-        command: []
-        args: []
+        command: ["sleep", "infinity"]
         volumeMounts:
           - name: logs-storage
             mountPath: /data
